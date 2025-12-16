@@ -1,0 +1,55 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Week8</a>
+
+        <button class="navbar-toggler"
+                @onclick="ToggleNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="nav-scrollable @(isNavOpen ? "show" : "")">
+    <nav class="flex-column">
+
+        <NavLink class="nav-link px-3" href="/" Match="NavLinkMatch.All">
+            <span class="bi bi-house-door-fill"></span>
+            Home
+        </NavLink>
+
+        <NavLink class="nav-link px-3" href="counter">
+            <span class="bi bi-plus-square-fill"></span>
+            Counter
+        </NavLink>
+
+        <NavLink class="nav-link px-3" href="weather">
+            <span class="bi bi-list-nested"></span>
+            Weather
+        </NavLink>
+
+        <NavLink class="nav-link px-3" href="products">
+            <span class="bi bi-bag-fill"></span>
+            Products
+        </NavLink>
+
+        <NavLink class="nav-link px-3" href="calculator">
+            <span class="bi bi-calculator-fill"></span>
+            Calculator
+        </NavLink>
+
+        <NavLink class="nav-link px-3" href="foodmenu">
+            <span class="bi bi-cup-hot-fill"></span>
+            Food Menu
+        </NavLink>
+
+    </nav>
+</div>
+
+@code {
+    private bool isNavOpen = true;
+
+    void ToggleNav()
+    {
+        isNavOpen = !isNavOpen;
+    }
+}
