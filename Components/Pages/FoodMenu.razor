@@ -1,0 +1,51 @@
+﻿@page "/FoodMenu"
+@using System.Linq
+@using Week8.Components.Layout
+@layout MainLayout
+
+
+<h2 class="mb-4">Our Food Menu</h2>
+
+<div style="margin-bottom:15px;">
+    <button @onclick="SortByPrice" class="btn btn-primary me-2">Sort by Price</button>
+    <button @onclick="SortByName" class="btn btn-secondary">Sort by Name</button>
+</div>
+
+<div class="d-flex flex-wrap">
+    @foreach (var item in FoodItems)
+    {
+        <ItemCard Name="@item.Name"
+                  Ingredients="@item.Ingredients"
+                  Price="@item.Price"
+                  Image="@item.Image" />
+    }
+</div>
+
+@code {
+    public class FoodItem
+    {
+        public string Name { get; set; }
+        public string Ingredients { get; set; }
+        public decimal Price { get; set; }
+        public string Image { get; set; }
+    }
+
+    private List<FoodItem> FoodItems = new()
+    {
+        new FoodItem { Name="Margherita Pizza", Ingredients="Cheese, Tomato, Basil", Price=12.99M, Image="/Images/pizza.jpg" },
+        new FoodItem { Name="Veggie Burger", Ingredients="Lettuce, Tomato, Patty, Sauce", Price=9.99M, Image="/Images/burger.jpeg" },
+        new FoodItem { Name="Caesar Salad", Ingredients="Lettuce, Croutons, Parmesan, Caesar Dressing", Price=7.99M, Image="/Images/salad.jpg" },
+        new FoodItem { Name="Spaghetti Carbonara", Ingredients="Pasta, Egg, Pancetta, Parmesan", Price=11.50M, Image="/Images/carbonara.jpg" },
+        new FoodItem { Name="Chocolate Cake", Ingredients="Cocoa, Flour, Sugar, Butter", Price=6.50M, Image="/Images/cake.webp" }
+    };
+
+    void SortByPrice()
+    {
+        FoodItems = FoodItems.OrderBy(item => item.Price).ToList();
+    }
+
+    void SortByName()
+    {
+        FoodItems = FoodItems.OrderBy(item => item.Name).ToList();
+    }
+}
