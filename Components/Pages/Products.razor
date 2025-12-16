@@ -1,0 +1,36 @@
+﻿@page "/products"
+@using Week8.Components.Layout
+@layout MainLayout
+
+<link href="css/Products.css" rel="stylesheet" />
+
+<h2 class="mb-4">Our Products</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var product in products)
+    {
+        <div class="col">
+            <ProductCard ProductName="@product.Item1"
+                         Price="@product.Item2"
+                         ImageUrl="@product.Item3"
+                         LikesCount="@product.Item4"
+                         OnLike="HandleLike" />
+        </div>
+    }
+</div>
+
+@code {
+    private List<(string, decimal, string, int)> products = new()
+    {
+        ("Laptop Pro X1", 1299.99M, "Images/laptop1.jpeg", 42),
+        ("Asus Laptop", 899.99M, "Images/laptop2.jpg", 87),
+        ("Wireless Headphone", 249.99M, "Images/Headphone.jpeg", 56),
+        ("Gaming Monitor", 549.99M, "Images/game.jpeg", 23),
+        ("Smart Watch", 329.99M, "Images/smartwatch.webp", 78)
+    };
+
+    private void HandleLike(int newLikeCount)
+    {
+        Console.WriteLine($"New like count: {newLikeCount}");
+    }
+}
