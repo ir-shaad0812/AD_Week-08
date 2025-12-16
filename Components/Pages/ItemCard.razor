@@ -1,0 +1,25 @@
+﻿@* ItemCard.razor *@
+<div class="card m-2" style="width: 18rem; border: 1px solid #ccc; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
+    <!-- Image -->
+    <img src="@Image" class="card-img-top" alt="@Name" style="height:150px; object-fit:cover;" />
+
+    <div class="card-body">
+        <h5 class="card-title">@Name</h5>
+        <p class="card-text"><strong>Ingredients:</strong> @Ingredients</p>
+        <p class="card-text"><strong>Price:</strong> $@Price</p>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter]
+    public string Ingredients { get; set; }
+
+    [Parameter]
+    public decimal Price { get; set; }
+
+    [Parameter]
+    public string Image { get; set; } // <-- Added Image parameter
+}
